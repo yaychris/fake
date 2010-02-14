@@ -17,3 +17,12 @@ module Kernel
   end
 end
 
+class Test::Unit::TestCase
+  def execute(args = nil)
+    args ||= ""
+    args = args.split(" ")
+    @stdout = capture_stdout do
+      Fake.execute(args)
+    end
+  end
+end

@@ -6,10 +6,17 @@ module Fake
   extend self
 
   def execute(args)
-    return print_help unless args.size > 0
+    if args.empty? || args.any? { |arg| %w( -h --help help ).include?(arg) }
+      return show_help 
+    end
+
+    case args[0]
+    when /sentence/
+      puts Faker::Lorem.sentence
+    end
   end
 
-  def print_help
+  def show_help
     puts "help"
   end
 end
