@@ -19,6 +19,8 @@ module Fake
       puts Faker::Name.name
     when /^phone numbers?$/
       puts Faker::PhoneNumber.phone_number
+    when /^emails?$/, /^email address(?:es)?$/
+      puts Faker::Internet.email
     else
       show_invalid_message(args.join(" "))
     end

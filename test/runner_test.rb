@@ -77,5 +77,18 @@ class RunnerTest < Test::Unit::TestCase
         end
       end
     end
+
+    # email address
+    ["email", "emails", "email address", "email addresses"].each do |arg|
+      context "'#{arg}'" do
+        should "print an email address" do
+          email = "john@johnson.com\n"
+          Faker::Internet.expects(:email).returns(email)
+
+          execute(arg)
+          assert_equal email, @stdout.string
+        end
+      end
+    end
   end
 end
