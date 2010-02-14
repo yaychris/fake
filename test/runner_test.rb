@@ -57,5 +57,18 @@ class RunnerTest < Test::Unit::TestCase
         end
       end
     end
+
+    # phone number
+    ["phone number", "phone numbers"].each do |arg|
+      context "'#{arg}'" do
+        should "print a phone number" do
+          number = "123 456 7890\n"
+          Faker::PhoneNumber.expects(:phone_number).returns(number)
+
+          execute(arg)
+          assert_equal number, @stdout.string
+        end
+      end
+    end
   end
 end

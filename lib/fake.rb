@@ -10,13 +10,15 @@ module Fake
       return show_help 
     end
 
-    case args[0]
+    case args.join(" ")
     when /^sentences?$/
       puts Faker::Lorem.sentence
     when /^paragraphs?$/
       puts Faker::Lorem.paragraph
     when /^names?$/
       puts Faker::Name.name
+    when /^phone numbers?$/
+      puts Faker::PhoneNumber.phone_number
     end
   end
 
