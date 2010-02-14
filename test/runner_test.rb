@@ -18,13 +18,15 @@ class RunnerTest < Test::Unit::TestCase
       end
     end
 
-    context "'sentence'" do
-      should "print a sentence" do
-        sentence = "Test sentence\n"
-        Faker::Lorem.expects(:sentence).returns(sentence)
+    %w(sentence sentences).each do |arg|
+      context "'#{arg}'" do
+        should "print a sentence" do
+          sentence = "Test sentence\n"
+          Faker::Lorem.expects(:sentence).returns(sentence)
 
-        execute "sentence"
-        assert_equal sentence, @stdout.string
+          execute(arg)
+          assert_equal sentence, @stdout.string
+        end
       end
     end
   end

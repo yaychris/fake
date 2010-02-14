@@ -11,7 +11,7 @@ module Fake
     end
 
     case args[0]
-    when /sentence/
+    when /^sentences?$/
       puts Faker::Lorem.sentence
     end
   end
