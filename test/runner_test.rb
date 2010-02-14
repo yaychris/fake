@@ -91,4 +91,14 @@ class RunnerTest < Test::Unit::TestCase
       end
     end
   end
+
+  context "when repeating" do
+    should "output multiple times" do
+      num = rand(10) + 1
+      sentence = "Test sentence"
+      Faker::Lorem.expects(:sentence).times(num).returns(sentence)
+      execute "#{num} sentences"
+      assert_equal ("#{sentence}\n" * num), @stdout.string
+    end
+  end
 end

@@ -10,27 +10,47 @@ module Fake
       return show_help 
     end
 
-    case args.join(" ")
-    when /^sentences?$/
-      puts Faker::Lorem.sentence
-    when /^paragraphs?$/
-      puts Faker::Lorem.paragraph
-    when /^names?$/
-      puts Faker::Name.name
-    when /^phone numbers?$/
-      puts Faker::PhoneNumber.phone_number
-    when /^emails?$/, /^email address(?:es)?$/
-      puts Faker::Internet.email
+    num, klass, method = parse_command(args)
+
+    if num && klass && method
+      num.times do
+        puts klass.send(method)
+      end
     else
-      show_invalid_message(args.join(" "))
+      show_error(args)
     end
+  end
+
+  def parse_command(args)
+    # parse repetition
+    num = if args[0] =~ /^\d+$/
+      args.slice!(0).to_i
+    else
+      num = 1
+    end
+
+    # parse command
+    command = case args.join(" ")
+    when /^sentences?$/
+      [Faker::Lorem, :sentence]
+    when /^paragraphs?$/
+      [Faker::Lorem, :paragraph]
+    when /^names?$/
+      [Faker::Name, :name]
+    when /^phone numbers?$/
+      [Faker::PhoneNumber, :phone_number]
+    when /^emails?$/, /^email address(?:es)?$/
+      [Faker::Internet, :email]
+    end
+
+    [num, command].flatten
   end
 
   def show_help
     puts "help"
   end
 
-  def show_invalid_message(command)
+  def show_error(command)
     puts "  unknown command: #{command}"
   end
 end
