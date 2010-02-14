@@ -9,6 +9,7 @@ class RunnerTest < Test::Unit::TestCase
   end
 
   context "with one argument" do
+    # help
     %w(-h --help help).each do |arg|
       context "'#{arg}'" do
         should "print the help text" do
@@ -18,6 +19,7 @@ class RunnerTest < Test::Unit::TestCase
       end
     end
 
+    # sentence
     %w(sentence sentences).each do |arg|
       context "'#{arg}'" do
         should "print a sentence" do
@@ -26,6 +28,19 @@ class RunnerTest < Test::Unit::TestCase
 
           execute(arg)
           assert_equal sentence, @stdout.string
+        end
+      end
+    end
+
+    # paragraph
+    %w(paragraph paragraphs).each do |arg|
+      context "'#{arg}'" do
+        should "print a paragraph" do
+          paragraph = "Test paragraph\n"
+          Faker::Lorem.expects(:paragraph).returns(paragraph)
+
+          execute(arg)
+          assert_equal paragraph, @stdout.string
         end
       end
     end

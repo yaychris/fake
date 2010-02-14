@@ -13,6 +13,8 @@ module Fake
     case args[0]
     when /^sentences?$/
       puts Faker::Lorem.sentence
+    when /^paragraphs?$/
+      puts Faker::Lorem.paragraph
     end
   end
 
