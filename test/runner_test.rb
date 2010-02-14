@@ -9,6 +9,13 @@ class RunnerTest < Test::Unit::TestCase
   end
 
   context "with one argument" do
+    context "that is invalid" do
+      should "print an error message" do
+        execute "blah"
+        assert_equal "  unknown command: blah\n", @stdout.string
+      end
+    end
+
     # help
     %w(-h --help help).each do |arg|
       context "'#{arg}'" do

@@ -19,10 +19,16 @@ module Fake
       puts Faker::Name.name
     when /^phone numbers?$/
       puts Faker::PhoneNumber.phone_number
+    else
+      show_invalid_message(args.join(" "))
     end
   end
 
   def show_help
     puts "help"
+  end
+
+  def show_invalid_message(command)
+    puts "  unknown command: #{command}"
   end
 end
