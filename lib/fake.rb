@@ -15,6 +15,8 @@ module Fake
       puts Faker::Lorem.sentence
     when /^paragraphs?$/
       puts Faker::Lorem.paragraph
+    when /^names?$/
+      puts Faker::Name.name
     end
   end
 

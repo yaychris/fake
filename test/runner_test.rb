@@ -44,5 +44,18 @@ class RunnerTest < Test::Unit::TestCase
         end
       end
     end
+
+    # name
+    %w(name names).each do |arg|
+      context "'#{arg}'" do
+        should "print a name" do
+          name = "John Johnson\n"
+          Faker::Name.expects(:name).returns(name)
+
+          execute(arg)
+          assert_equal name, @stdout.string
+        end
+      end
+    end
   end
 end
