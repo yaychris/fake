@@ -26,7 +26,7 @@ module Fake
     num = if args[0] =~ /^\d+$/
       args.slice!(0).to_i
     else
-      num = 1
+      1
     end
 
     # parse command
