@@ -4,7 +4,7 @@ class RunnerTest < Test::Unit::TestCase
   context "with no arguments" do
     should "print the help text" do
       execute
-      assert_equal "help\n", @stdout.string
+      assert_equal Fake::HELP, @stdout.string
     end
   end
 
@@ -21,7 +21,7 @@ class RunnerTest < Test::Unit::TestCase
       context "'#{arg}'" do
         should "print the help text" do
           execute(arg)
-          assert_equal "help\n", @stdout.string
+          assert_equal Fake::HELP, @stdout.string
         end
       end
     end

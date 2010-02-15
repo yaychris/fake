@@ -1,4 +1,5 @@
 require "faker"
+require "fake/help"
 
 module Fake
   VERSION = "0.0.1"
@@ -47,7 +48,7 @@ module Fake
   end
 
   def show_help
-    puts "help"
+    puts HELP
   end
 
   def show_error(command)
