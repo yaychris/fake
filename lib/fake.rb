@@ -37,7 +37,7 @@ module Fake
       [Faker::Lorem, :paragraph]
     when /^names?$/
       [Faker::Name, :name]
-    when /^phone numbers?$/
+    when /^phones?$/, /^phone numbers?$/
       [Faker::PhoneNumber, :phone_number]
     when /^emails?$/, /^email address(?:es)?$/
       [Faker::Internet, :email]

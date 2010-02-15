@@ -66,7 +66,7 @@ class RunnerTest < Test::Unit::TestCase
     end
 
     # phone number
-    ["phone number", "phone numbers"].each do |arg|
+    ["phone", "phones", "phone number", "phone numbers"].each do |arg|
       context "'#{arg}'" do
         should "print a phone number" do
           number = "123 456 7890\n"
